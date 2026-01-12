@@ -18,18 +18,21 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  // Authentication functions
   const login = async (data) => {
     const res = await apiLogin(data);
     localStorage.setItem("token", res.data.token);
     await fetchUser();
   };
 
+  // Registration function
   const register = async (data) => {
     const res = await apiRegister(data);
     localStorage.setItem("token", res.data.token);
     await fetchUser();
   };
 
+  // Logout function
   const logout = () => {
     localStorage.removeItem("token");
     setUser(null);

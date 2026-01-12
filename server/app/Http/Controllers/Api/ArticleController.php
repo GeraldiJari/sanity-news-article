@@ -53,6 +53,17 @@ class ArticleController extends Controller
         return response()->json($updated);
     }
 
+    public function edit(Request $request, string $slug)
+    {
+        $article = $this->service->findBySlug(
+            $slug,
+            $request->user()->id
+        );
+
+        return response()->json($article);
+    }
+
+
     public function destroy(Article $article)
     {
         $this->authorize('delete', $article);
@@ -69,6 +80,14 @@ class ArticleController extends Controller
         $article = $this->service->findBySlug($slug, $userId);
 
         return response()->json($article);
+    }
+
+    public function userArticles(Request $request)
+    {
+        $userId = $request->user()->id;
+        $articles = $this->service->getMyArticle($userId);
+
+        return response()->json($articles);
     }
 
 }

@@ -8,6 +8,7 @@ use Illuminate\Support\Collection;
 interface ArticleRepositoryInterface
 {
     public function all(): Collection;
+    public function getByUser(int $userId);
     public function findById(int $id): ?Article;
     public function create(array $data): Article;
     public function update(Article $article, array $data): Article;

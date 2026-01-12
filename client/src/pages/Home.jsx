@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { getArticles } from "../api/article.api";
 import { Link } from "react-router-dom";
+import Navbar from "../components/Navbar";
 
 export default function Home() {
   const [articles, setArticles] = useState([]);
@@ -10,6 +11,9 @@ export default function Home() {
   }, []);
 
   return (
+    <>
+    <Navbar />
+
     <div>
       <h1>Articles</h1>
       {articles.map((a) => (
@@ -21,5 +25,7 @@ export default function Home() {
         </div>
       ))}
     </div>
+    </>
   );
+  
 }

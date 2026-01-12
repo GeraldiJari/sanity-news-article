@@ -37,4 +37,10 @@ class ArticleRepository implements ArticleRepositoryInterface
     {
         return Article::where('slug', $slug)->first();
     }
+    public function getByUser(int $userId)
+    {
+        return Article::where('user_id', $userId)
+            ->latest()
+            ->get();
+    }
 }

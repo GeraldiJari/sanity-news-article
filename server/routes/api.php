@@ -6,6 +6,8 @@ use App\Http\Controllers\Api\AuthController;
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
+Route::middleware('auth:sanctum')->get('/me', [AuthController::class, 'me']);
+// Route::middleware('auth:sanctum')->post('/logout', [AuthController::class, 'logout']);
 
 Route::middleware('auth:sanctum')->post('/logout', [AuthController::class, 'logout']);
 
@@ -13,6 +15,17 @@ Route::middleware('auth:sanctum')->post('/logout', [AuthController::class, 'logo
 Route::get('/ping', function () {
     return response()->json(['message' => 'API OK']);
 });
+
+Route::middleware('auth:sanctum')->get(
+    '/my-articles',
+    [ArticleController::class, 'userArticles']
+);
+Route::middleware('auth:sanctum')->get(
+    '/articles/{slug}/edit',
+    [ArticleController::class, 'edit']
+);
+
+
 
 Route::get('/articles/{slug}', [ArticleController::class, 'show']);
 

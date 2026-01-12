@@ -78,4 +78,9 @@ class ArticleService
         // Draft + bukan owner
         abort(404);
     }
+
+    public function getMyArticle(int $userId)
+    {
+        return $this->repository->getByUser($userId);
+    }
 }
