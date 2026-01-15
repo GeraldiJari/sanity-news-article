@@ -2,17 +2,26 @@ export default function NewsCard({ article, onClick }) {
   return (
     <div
       onClick={onClick}
-      className="min-w-70 h-50 cursor-pointer rounded-lg overflow-hidden border hover:shadow-lg transition"
+      className="
+        w-[220px]
+        cursor-pointer
+        rounded-xl
+        overflow-hidden
+        bg-neutral-800
+        hover:shadow-xl
+        transition
+        flex-shrink-0
+      "
     >
       <img
         src={article.cover_image || "/Image/expcard.jpg"}
-        className="h-40 w-full"
+        className="w-full object-cover"
       />
 
       <div className="p-4">
-        <h3 className="font-semibold leading-snug">
+        <div className="font-semibold leading-snug text-s">
           {article.title}
-        </h3>
+        </div>
       </div>
     </div>
   );

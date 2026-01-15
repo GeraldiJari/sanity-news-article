@@ -9,9 +9,9 @@ export default function Sidebar() {
     <aside
       className={`
         fixed left-0 top-0 h-screen z-50
-        bg-white border-r
+        bg-neutral-900 border-r border-neutral-800
         transition-all duration-300
-        ${open ? "w-56" : "w-16"}
+        ${open ? "w-46" : "w-16"}
       `}
       onMouseEnter={() => setOpen(true)}
       onMouseLeave={() => setOpen(false)}
