@@ -26,17 +26,15 @@ export default function Home() {
   if (!featured) return null;
 
   return (
-<section className="relative">
-  {/* Yellow accent */}
-  <div className="absolute left-16 lg:left-56 top-0 h-full w-16 bg-yellow-400" />
+    <section className="relative">
+      {/* <div className="absolute left-16 lg:left-56 top-0 h-full w-16 bg-neutral-800" /> */}
 
-  <div className="relative max-w-6xl mx-auto px-8 py-16">
-    <div className="grid grid-cols-1 lg:grid-cols-[3fr_2fr] gap-10">
-      <NewsHero article={featured} />
-      <NewsRail articles={others} onSelect={swapFeatured} />
-    </div>
-  </div>
-</section>
-
+      <div className="relative max-w-6xl mx-auto px-8 py-16">
+        <div className="grid grid-cols-1 lg:grid-cols-[2fr_4fr] gap-10">
+          <NewsHero article={featured} />
+          <NewsRail articles={others} onSelect={swapFeatured} />
+        </div>
+      </div>
+    </section>
   );
 }

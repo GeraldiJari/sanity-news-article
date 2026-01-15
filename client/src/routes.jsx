@@ -10,7 +10,14 @@ import ProtectedRoute from "./components/GuardRoute";
 import AppLayout from "./layouts/AppLayout";
 
 export const router = createBrowserRouter([
-  { path: "/", element: <AppLayout /> },
+  {
+    path: "/",
+    element: (
+      <AppLayout>
+        <Home />
+      </AppLayout>
+    ),
+  },
   { path: "/articles/:slug", element: <ArticleDetail /> },
   { path: "/login", element: <Login /> },
   { path: "/register", element: <Register /> },
