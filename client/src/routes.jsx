@@ -1,15 +1,16 @@
 import { createBrowserRouter } from "react-router-dom";
 import Home from "./pages/Home";
-import ArticleDetail from "./pages/ArticleDetail";
+import ArticleDetail from "./pages/Article/ArticleDetail";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import MyArticles from "./pages/MyArticles";
-import EditArticle from "./pages/EditArticle";
+import MyArticles from "./pages/Article/MyArticles";
+import EditArticle from "./pages/Article/EditArticle";
 import Write from "./pages/Write";
 import ProtectedRoute from "./components/GuardRoute";
+import AppLayout from "./layouts/AppLayout";
 
 export const router = createBrowserRouter([
-  { path: "/", element: <Home /> },
+  { path: "/", element: <AppLayout /> },
   { path: "/articles/:slug", element: <ArticleDetail /> },
   { path: "/login", element: <Login /> },
   { path: "/register", element: <Register /> },

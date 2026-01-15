@@ -16,8 +16,19 @@ export default function Navbar() {
 
       {user ? (
         <>
-          <Link to="/write">Write</Link>
-          <button onClick={handleLogout}>Logout</button>
+          <Link
+            to="/write"
+            className="hover:text-black transition"
+          >
+            Write
+          </Link>
+
+          <button
+            onClick={logout}
+            className="text-red-500 hover:text-red-700 transition"
+          >
+            Logout
+          </button>
         </>
       ) : (
         <>

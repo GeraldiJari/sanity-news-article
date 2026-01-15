@@ -27,7 +27,6 @@ class ArticleRepository implements ArticleRepositoryInterface
         $article->update($data);
         return $article;
     }
-
     public function delete(Article $article): bool
     {
         return $article->delete();
