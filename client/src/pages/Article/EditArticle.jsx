@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import Editor from "../components/ArticleEditor";
+import Editor from "../../components/ArticleEditor";
 import {
   getArticleForEdit,
   updateArticle,
   deleteArticle,
-} from "../api/article.api";
+} from "../../api/article.api";
 
 export default function EditArticle() {
   const { slug } = useParams();

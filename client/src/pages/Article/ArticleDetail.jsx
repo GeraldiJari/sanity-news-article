@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getArticleBySlug } from "../api/article.api";
+import { getArticleBySlug } from "../../api/article.api";
 
 export default function ArticleDetail() {
   const { slug } = useParams();
@@ -13,9 +13,12 @@ export default function ArticleDetail() {
   if (!article) return <p>Loading...</p>;
 
   return (
-    <article>
+    <article className="prose prose-lg prose-neutral max-w-none font-serif">
       <h1>{article.title}</h1>
-      <div dangerouslySetInnerHTML={{ __html: article.content }} />
+      <div
+        dangerouslySetInnerHTML={{ __html: article.content }}
+      />
     </article>
+
   );
 }
