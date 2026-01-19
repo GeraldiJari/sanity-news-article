@@ -1,5 +1,52 @@
 @import "tailwindcss";
 
+/* ===========================
+   FUTURISTIC HORIZONTAL SCROLLBAR
+=========================== */
+
+.custom-scroll-x::-webkit-scrollbar {
+  height: 6px;
+}
+
+.custom-scroll-x::-webkit-scrollbar-track {
+  background: linear-gradient(
+    90deg,
+    rgba(255,255,255,0.02),
+    rgba(255,255,255,0.06),
+    rgba(255,255,255,0.02)
+  );
+  border-radius: 999px;
+}
+
+.custom-scroll-x::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    90deg,
+    #facc15,
+    #fde047,
+    #facc15
+  );
+  border-radius: 999px;
+  box-shadow:
+    0 0 6px rgba(250,204,21,.6),
+    0 0 12px rgba(250,204,21,.4);
+}
+
+.custom-scroll-x::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(
+    90deg,
+    #fde047,
+    #fef08a,
+    #fde047
+  );
+}
+
+/* Firefox */
+.custom-scroll-x {
+  scrollbar-width: thin;
+  scrollbar-color: #facc15 transparent;
+}
+
+
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;

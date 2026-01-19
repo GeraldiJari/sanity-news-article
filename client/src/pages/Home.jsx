@@ -1,12 +1,12 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { getArticles } from "../api/article.api";
-// import Sidebar from "../components/Sidebar";
 import NewsHero from "../components/NewsHero";
 import NewsRail from "../components/NewsRail";
 
 export default function Home() {
   const [featured, setFeatured] = useState(null);
   const [others, setOthers] = useState([]);
+  const timerRef = useRef(null);
 
   useEffect(() => {
     getArticles().then((res) => {
@@ -23,18 +23,51 @@ export default function Home() {
     setFeatured(article);
   };
 
+  const goNext = () => {
+    if (others.length === 0) return;
+    swapFeatured(others[0]);
+  };
+
+  // AUTO ROTATE
+  useEffect(() => {
+    if (!featured || others.length === 0) return;
+
+    timerRef.current = setInterval(() => {
+      goNext();
+    }, 4500);
+
+    return () => clearInterval(timerRef.current);
+  }, [featured, others]);
+
   if (!featured) return null;
 
   return (
-    <section className="relative">
-      {/* <div className="absolute left-16 lg:left-56 top-0 h-full w-16 bg-neutral-800" /> */}
+    <div className="max-w-6xl mx-auto px-10 py-16">
+      {/* META */}
+      <p className="text-xs uppercase tracking-widest text-gray-400 mb-2">
+        // Notices ·{" "}
+        {new Date(featured.published_at).toISOString().slice(0, 10)}
+      </p>
 
-      <div className="relative max-w-6xl mx-auto px-8 py-16">
-        <div className="grid grid-cols-1 lg:grid-cols-[2fr_4fr] gap-10">
-          <NewsHero article={featured} />
-          <NewsRail articles={others} onSelect={swapFeatured} />
-        </div>
+      <div className="text-xl font-bold -mb-20">
+        {featured.title}
       </div>
-    </section>
+
+      <div className="grid grid-cols-[auto_1fr] gap-10 items-end">
+        <NewsHero
+          article={featured}
+          onClickPrev={
+            others.length
+              ? () => swapFeatured(others[others.length - 1])
+              : null
+          }
+        />
+
+        <NewsRail
+          articles={others}
+          onSelect={swapFeatured}
+        />
+      </div>
+    </div>
   );
 }
