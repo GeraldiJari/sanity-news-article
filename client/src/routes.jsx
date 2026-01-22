@@ -8,6 +8,7 @@ import EditArticle from "./pages/Article/EditArticle";
 import Write from "./pages/Write";
 import ProtectedRoute from "./components/GuardRoute";
 import AppLayout from "./layouts/AppLayout";
+import EditorLayout from "./layouts/EditorLayout";
 
 export const router = createBrowserRouter([
   {
@@ -25,10 +26,13 @@ export const router = createBrowserRouter([
     path: "/write",
     element: (
       <ProtectedRoute>
-        <Write />
+        <EditorLayout>
+          <Write />
+        </EditorLayout>
       </ProtectedRoute>
     ),
   },
+
   {
   path: "/my-articles",
   element: (

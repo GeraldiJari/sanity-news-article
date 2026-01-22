@@ -38,6 +38,8 @@ class ArticleController extends Controller
         return response()->json($article, 201);
     }
 
+    
+
     public function update(Request $request, Article $article)
     {
         $this->authorize('update', $article);

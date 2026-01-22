@@ -1,63 +1,66 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import Editor from "../components/ArticleEditor";
-import { createArticle } from "../api/article.api";
+import RichEditor from "../components/TextEditor";
 
 export default function Write() {
-  const navigate = useNavigate();
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const [isPublished, setIsPublished] = useState(false);
-  const [loading, setLoading] = useState(false);
 
-  const submit = async () => {
-    setLoading(true);
-    try {
-      const res = await createArticle({
-        title,
-        content,
-        is_published: isPublished,
-      });
+  const saveDraft = () => {
+    console.log("SAVE DRAFT", { title, content });
+    alert("Draft simulated (check console)");
+  };
 
-      navigate(`/articles/${res.data.slug}`);
-    } catch (e) {
-      alert("Failed to publish article");
-    } finally {
-      setLoading(false);
-    }
+  const publish = () => {
+    console.log("PUBLISH", { title, content });
+    alert("Publish simulated (check console)");
   };
 
   return (
-    <div style={{ maxWidth: 800, margin: "0 auto" }}>
-      <h1>Write Article</h1>
+    <div className="w-full">
+      <div className="w-full max-w-6xl mx-auto px-6 pb-20">
+        <div className="bg-neutral-800 rounded-2xl p-10 mt-10 shadow-xl">
+          {/* HEADER */}
+          <div className="flex items-center justify-between mb-8">
+            <h1 className="text-2xl font-semibold">
+              New Article
+            </h1>
 
-      <input
-        placeholder="Article title"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-        style={{
-          width: "100%",
-          fontSize: 24,
-          marginBottom: 16,
-        }}
-      />
+            <div className="flex gap-3">
+              <button
+                onClick={saveDraft}
+                className="px-4 py-2 rounded-lg bg-neutral-700 hover:bg-neutral-600 text-sm"
+              >
+                Save Draft
+              </button>
 
-      <Editor content={content} onChange={setContent} />
+              <button
+                onClick={publish}
+                className="px-4 py-2 rounded-lg bg-yellow-400 hover:bg-yellow-300 text-black font-medium text-sm"
+              >
+                Publish
+              </button>
+            </div>
+          </div>
 
-      <div style={{ marginTop: 16 }}>
-        <label>
-          <input
-            type="checkbox"
-            checked={isPublished}
-            onChange={(e) => setIsPublished(e.target.checked)}
-          />
-          Publish immediately
-        </label>
+          {/* TITLE */}
+          <div className="mb-8">
+            <input
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              maxLength={120}
+              placeholder="Enter a title"
+              className="w-full bg-neutral-900 border border-neutral-700 rounded-xl px-6 py-4 text-2xl outline-none focus:border-yellow-400"
+            />
+
+            <div className="text-right text-xs text-gray-400 mt-1">
+              {title.length}/120
+            </div>
+          </div>
+
+          {/* EDITOR */}
+          <RichEditor onChange={setContent} />
+        </div>
       </div>
-
-      <button onClick={submit} disabled={loading}>
-        {loading ? "Saving..." : "Save"}
-      </button>
     </div>
   );
 }
