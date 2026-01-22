@@ -8,7 +8,10 @@ import "./index.css";
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <AuthProvider>
-      <RouterProvider router={router} />
+      {/* ROOT HARUS FULL WIDTH, TIDAK BOLEH FLEX CENTER */}
+      <div className="w-full min-h-screen">
+        <RouterProvider router={router} />
+      </div>
     </AuthProvider>
   </React.StrictMode>
 );

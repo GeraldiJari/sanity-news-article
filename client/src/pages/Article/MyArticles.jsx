@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { getMyArticles } from "../../api/article.api";
+import Sidebar from "../../components/Sidebar";
 import { Link } from "react-router-dom";
 
 export default function MyArticles() {
@@ -10,6 +11,8 @@ export default function MyArticles() {
   }, []);
 
   return (
+    <>
+      <Sidebar />
     <div style={{ maxWidth: 800, margin: "0 auto" }}>
       <h1>My Articles</h1>
 
@@ -71,5 +74,6 @@ export default function MyArticles() {
         ))}
 
     </div>
+    </>
   );
 }

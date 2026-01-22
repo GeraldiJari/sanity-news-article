@@ -4,7 +4,7 @@ export default function SidebarItem({ icon, label, to, open }) {
   return (
     <NavLink
       to={to}
-      end={to === "/"} // penting supaya Home tidak selalu aktif
+      end={to === "/"}
       className={({ isActive }) =>
         `
         flex items-center gap-3
